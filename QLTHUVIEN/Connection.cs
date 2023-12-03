@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-
+// ver
 namespace QLTHUVIEN
 {
     class Connection
