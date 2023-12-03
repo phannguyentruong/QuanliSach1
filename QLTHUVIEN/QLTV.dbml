@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLTHUVIEN" Class="QLTVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=TRUONG\SQLEXPRESS;Initial Catalog=QLTHUVIEN;Integrated Security=True;Encrypt=False;Trust Server Certificate=True" SettingsObjectName="QLTHUVIEN.Properties.Settings" SettingsPropertyName="QLTHUVIENConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.khoa" Member="khoas">
+    <Type Name="khoa">
+      <Column Name="makhoa" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenkhoa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="khoa_docgia" Member="docgias" ThisKey="makhoa" OtherKey="makhoa" Type="docgia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.docgia" Member="docgias">
+    <Type Name="docgia">
+      <Column Name="madocgia" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ngaysinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="makhoa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ngaylapthe" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="docgia_phieumuon" Member="phieumuons" ThisKey="madocgia" OtherKey="madocgia" Type="phieumuon" />
+      <Association Name="khoa_docgia" Member="khoa" ThisKey="makhoa" OtherKey="makhoa" Type="khoa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nhanvien" Member="nhanviens">
+    <Type Name="nhanvien">
+      <Column Name="manhanvien" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tendangnhap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="quyenhan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="nhanvien_phieumuon" Member="phieumuons" ThisKey="manhanvien" OtherKey="manhanvien" Type="phieumuon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.phanloai" Member="phanloais">
+    <Type Name="phanloai">
+      <Column Name="maloai" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenloai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.phieumuon" Member="phieumuons">
+    <Type Name="phieumuon">
+      <Column Name="madocgia" Type="System.String" DbType="NVarChar(50)" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="ngaymuon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="masach" Type="System.String" DbType="NVarChar(50)" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="manhanvien" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="soluong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="trangthai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ngaytra" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="docgia_phieumuon" Member="docgia" ThisKey="madocgia" OtherKey="madocgia" Type="docgia" IsForeignKey="true" />
+      <Association Name="nhanvien_phieumuon" Member="nhanvien" ThisKey="manhanvien" OtherKey="manhanvien" Type="nhanvien" IsForeignKey="true" />
+      <Association Name="sach_phieumuon" Member="sach" ThisKey="masach" OtherKey="masach" Type="sach" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sach" Member="saches">
+    <Type Name="sach">
+      <Column Name="masach" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nhande" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sotrang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="namxb" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="lanxb" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="solanmuon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="maloai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="nxb" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tacgia" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ngaynhap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="sach_phieumuon" Member="phieumuons" ThisKey="masach" OtherKey="masach" Type="phieumuon" />
+    </Type>
+  </Table>
+</Database>
